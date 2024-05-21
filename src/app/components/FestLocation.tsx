@@ -13,7 +13,7 @@ const center = {
   lng: 12.5415651,
 };
 
-export default function FestLocation() {
+const FestLocation: React.FC = () => {
   return (
     <div className="container">
       <div className="row">
@@ -31,15 +31,19 @@ export default function FestLocation() {
           </p>
         </div>
         <div className="col-md">
-          <LoadScript googleMapsApiKey={"" + process.env.API_KEY_GOOGLEMAPS}>
+          <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_API_KEY_GOOGLEMAPS || ""}>
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
               zoom={10}
-            ></GoogleMap>
+            >
+              {/* You can add additional components inside the GoogleMap if needed */}
+            </GoogleMap>
           </LoadScript>
         </div>
       </div>
     </div>
   );
 }
+
+export default FestLocation;
