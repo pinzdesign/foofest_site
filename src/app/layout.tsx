@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Gugi } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+
+import 'bootstrap/dist/css/bootstrap.css';
+import BootstrapClient from '@/app/components/BootstrapClient';
+
+/* Import global css to override bootstraps styling, all custom rules are here */
+import "./globals.css";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+
+const font = Gugi({ weight: '400', subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +24,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>
+        <SiteHeader></SiteHeader>
+        {children}
+        <SiteFooter></SiteFooter>
+      </body>
+      <BootstrapClient/>
     </html>
   );
 }
