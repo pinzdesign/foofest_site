@@ -22,7 +22,7 @@ export default async function Artist(props:any) {
                     </div>
                     <div className="col-sm-8">
                         <h2>{data.name}</h2>
-                        <p>Medlemmer: {data.members.map((member: string) => ( <span> {member}, </span> ))}</p>
+                        <p>Medlemmer: {data.members.map((member: string) => ( <span key={member}> {member}, </span> ))}</p>
                         <p>Genre: {data.genre}</p>
                         <p>Bio: {data.bio}</p>
                     </div>
