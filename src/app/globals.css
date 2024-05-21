@@ -6,6 +6,7 @@
   --color-primary: orange;
   --color-secondary: #acacac;
   --text-sm: 12px;
+  --text-md: 18px;
 }
 
 * {
@@ -72,6 +73,11 @@ input {
 /* Navmenu */
 .navbar {
   padding: 20px;
+
+  .icon {
+    font-size: var(--text-md);
+    display: inline-block;
+  }
 }
 
 /* Layout grids */
