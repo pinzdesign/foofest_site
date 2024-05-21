@@ -13,7 +13,7 @@ export default async function ArtistList() {
         <h1>Kunstnere - FooFest 2024</h1>
         <div className="grid_3">
             {data.map((band : any) => (
-                <ArtistCard {...band}></ArtistCard>
+                <ArtistCard key={band.slug} {...band}></ArtistCard>
             ))}
         </div>
     </div>
