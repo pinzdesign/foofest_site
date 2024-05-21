@@ -1,6 +1,4 @@
 import {formatImgPath} from "@/app/lib/formatString";
-import SiteFooter from "../../components/SiteFooter";
-import SiteHeader from "../../components/SiteHeader";
 
 export default async function Artist(props:any) {
 
