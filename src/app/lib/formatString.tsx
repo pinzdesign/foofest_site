@@ -1,7 +1,7 @@
 export function formatImgPath(path:string) {
     let logo = "noimage.png";
     if(path.startsWith("https://")) { logo = path }
-    else { logo = "http://localhost:8080/logos/" + path }
+    else { logo = process.env.SERVER_INFO_API_URL + "/logos/" + path }
     return logo;
 }
 
