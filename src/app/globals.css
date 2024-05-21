@@ -75,8 +75,8 @@ input {
   padding: 20px;
 
   .icon {
-    font-size: var(--text-md);
-    display: inline-block;
+    height: var(--text-md);
+    margin-right: 5px;
   }
 }
 

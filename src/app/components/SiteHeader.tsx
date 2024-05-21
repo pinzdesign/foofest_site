@@ -26,7 +26,7 @@ export default function SiteHeader() {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link" href={"/"}>
-                    <FontAwesomeIcon icon="coffee" className="icon" />
+                    <FontAwesomeIcon icon="house" />
                     Forside
                 </Link>
               </li>
