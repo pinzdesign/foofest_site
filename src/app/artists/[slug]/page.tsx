@@ -3,7 +3,7 @@ import {formatImgPath} from "@/app/lib/formatString";
 export default async function Artist(props:any) {
 
     const response = await fetch(
-        `http://localhost:8080/bands/` + props.params.slug
+        process.env.SERVER_INFO_API_URL + "/bands/" + props.params.slug
     );
 
     const data = await response.json();

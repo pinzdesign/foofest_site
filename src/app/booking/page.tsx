@@ -6,7 +6,7 @@ export default async function BookingPage() {
         "Content-Type": "application/json"
        }
        
-    let response = await fetch("http://localhost:8080/available-spots", { 
+    let response = await fetch(process.env.SERVER_INFO_API_URL + "/available-spots", { 
         method: "GET",
         headers: headersList
     });
