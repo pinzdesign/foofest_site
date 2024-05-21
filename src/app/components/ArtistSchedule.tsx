@@ -1,7 +1,7 @@
 import { formatDay, formatScheduleAct } from "../lib/formatString";
 
 export default async function ArtistSchedule() {
-  const response = await fetch(process.env.SERVER_INFO_API_URL + "/schedule");
+  const response = await fetch(process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/schedule");
 
   const data = await response.json();
 

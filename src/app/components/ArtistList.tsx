@@ -1,7 +1,7 @@
 import ArtistCard from "./ArtistCard";
 
 export default async function ArtistList() {
-  const response = await fetch(process.env.SERVER_INFO_API_URL + "/bands");
+  const response = await fetch(process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/bands");
 
   const data = await response.json();
   //console.log(data)

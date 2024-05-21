@@ -142,7 +142,7 @@ export default function BookingArea({ data }: { data: any }) {
       });
 
       let response = await fetch(
-        process.env.SERVER_INFO_API_URL + "/fullfill-reservation",
+        process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/fullfill-reservation",
         {
           method: "POST",
           body: bodyContent,
@@ -180,7 +180,7 @@ export default function BookingArea({ data }: { data: any }) {
         });
 
         let responseSupa = await fetch(
-          process.env.SERVER_INFO_DATABASE_URL + "/bookings",
+          process.env.NEXT_PUBLIC_SERVER_INFO_DATABASE_URL + "/bookings",
           {
             method: "POST",
             body: bodyContentSupa,
@@ -245,7 +245,7 @@ export default function BookingArea({ data }: { data: any }) {
     });
 
     let response = await fetch(
-      process.env.SERVER_INFO_API_URL + "/reserve-spot",
+      process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/reserve-spot",
       {
         method: "PUT",
         body: bodyContent,
