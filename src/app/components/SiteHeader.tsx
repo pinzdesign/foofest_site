@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function SiteHeader() {
   return (
@@ -25,7 +26,8 @@ export default function SiteHeader() {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
                 <Link className="nav-link" href={"/"}>
-                  Forside
+                    <FontAwesomeIcon icon="coffee" />
+                    Forside
                 </Link>
               </li>
               <li className="nav-item">

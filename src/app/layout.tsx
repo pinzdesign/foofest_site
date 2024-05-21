@@ -4,9 +4,11 @@ import { Gugi } from "next/font/google";
 
 import 'bootstrap/dist/css/bootstrap.css';
 import BootstrapClient from '@/app/components/BootstrapClient';
+import "./lib/fontawesome"
 
 /* Import global css to override bootstraps styling, all custom rules are here */
 import "./globals.css";
+
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 
