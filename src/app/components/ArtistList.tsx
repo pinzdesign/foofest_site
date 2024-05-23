@@ -8,7 +8,6 @@ export default async function ArtistList() {
 
   return (
     <div className="container">
-      <h1>Kunstnere - FooFest 2024</h1>
       <div className="grid_3">
         {data.map((band: any) => (
           <ArtistCard key={band.slug} {...band}></ArtistCard>

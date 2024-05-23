@@ -1,3 +1,4 @@
+import Sponsors from "@/app/components/Sponsors";
 import {formatImgPath} from "@/app/lib/formatString";
 
 export default async function Artist(props:any) {
@@ -26,6 +27,7 @@ export default async function Artist(props:any) {
                     </div>
                 </div>
             </div>
+            <Sponsors></Sponsors>
         </main>
         </>
     )

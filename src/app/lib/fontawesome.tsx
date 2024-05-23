@@ -1,4 +1,4 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faCheckToSlot, faHouse, faMusic, faTicket } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faHouse);
+library.add(faHouse, faMusic, faCalendarDays, faCheckToSlot);

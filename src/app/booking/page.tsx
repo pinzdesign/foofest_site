@@ -1,4 +1,5 @@
 import BookingArea from "../components/BookingArea";
+import Sponsors from "../components/Sponsors";
 
 export default async function BookingPage() {
 
@@ -16,7 +17,15 @@ export default async function BookingPage() {
 
     return (
         <main>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg">
+                        <h2>Booking - Foofest 2024</h2>
+                    </div>
+                </div>
+            </div>
             <BookingArea data={data}></BookingArea>
+            <Sponsors></Sponsors>
         </main>
     )
 }

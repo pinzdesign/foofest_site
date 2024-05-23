@@ -21,6 +21,7 @@ body {
   overflow-x: hidden;
   background-color: var(--color-bg);
   font-family: "Gugi", sans-serif;
+  font-size: var(--text-md);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,6 +43,10 @@ header, .navbar {
   text-align: right;
   background-position: center;
   background-size: cover;
+}
+
+.container {
+  margin-bottom: 60px;
 }
 
 .jumbotron > .container {
@@ -70,14 +75,48 @@ input {
   box-shadow: 15px 15px 0px black;
 }
 
+.breaker {
+  background-color: var(--color-primary);
+  padding: 0px 30px;
+  color: white;
+  background-image: url("/images/foofest_bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.breaker-content {
+  background-color: rgba(0, 0, 0, .8);
+  padding: 30px;
+  margin-bottom: 30px;
+
+  p {
+    margin-top: 50px;
+  }
+}
+
 /* Navmenu */
 .navbar {
-  padding: 20px;
+  padding: 10px;
 
   .icon {
     height: var(--text-md);
     margin-right: 5px;
+    vertical-align: baseline;
   }
+}
+
+.nav-item {
+  margin-right: 30px;
+}
+
+.nav-link {
+  color: black;
+  transition: all .5s;
+}
+
+.nav-link:hover {
+  color: white;
 }
 
 /* Layout grids */

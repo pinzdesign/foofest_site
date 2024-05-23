@@ -7,8 +7,8 @@ export default function SiteHeader() {
     <header>
       <div className="container-fluid navmenu">
         <nav className="navbar fixed-top navbar-expand-md">
-          <a className="navbar-brand" href="#">
-            Navbar
+          <a className="navbar-brand" href="/">
+            <img src="/images/logo.png" alt="logo" width="155" height="40" />
           </a>
           <button
             className="navbar-toggler"
@@ -23,26 +23,29 @@ export default function SiteHeader() {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto ms-auto">
               <li className="nav-item active">
                 <Link className="nav-link" href={"/"}>
-                    <FontAwesomeIcon icon="house" />
+                    <FontAwesomeIcon icon="house" className="icon" />
                     Forside
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href={"/artists"}>
-                  Kunstnere
+                    <FontAwesomeIcon icon="music" className="icon" />
+                    Kunstnere
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href={"/schedule"}>
-                  Tidsplan
+                    <FontAwesomeIcon icon="calendar-days" className="icon" />
+                    Tidsplan
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href={"/booking"}>
-                  Booking
+                    <FontAwesomeIcon icon="check-to-slot" className="icon" />
+                    Booking
                 </Link>
               </li>
             </ul>
