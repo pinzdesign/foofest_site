@@ -126,108 +126,108 @@ export default function BookingArea({ data }: { data: any }) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    /* Send payment request, in this project we have to "fake" the payment,
-        so let's assume payment went thru as it should, and returns positive response.
-        Althou i am sending card number and cvv in formData, i don't do anything with it afterwards */
+    /* Set oayment response variable, in this project we have to "fake" the payment,
+    so we will assume payment went thru as it should, and returns positive response.
+    Althou i am sending card number and cvv in formData, i don't do anything with it afterwards */
     const paymentComplete = true;
 
-    if (paymentComplete == true) {
-      /* Send id to fullfill the reservation */
-      let headersList = {
+    /* Send id to fullfill the reservation */
+    let headersList = {
+      "Content-Type": "application/json",
+    };
+
+    let bodyContent = JSON.stringify({
+      id: formData.areaId,
+    });
+
+    let response = await fetch(
+      process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/fullfill-reservation",
+      {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList,
+      }
+    );
+
+    let data = await response.json();
+    // response from fullfill-reservation ALWAYS returns an object with message, it returns status only in case of error
+    if (data.status) {
+      setResultTxt(data.message);
+    }
+    //console.log(resultTxt)
+
+    if (!data.status) {
+      /* Check if payment went throught condition */
+      if(paymentComplete == true) {
+      /* Send request to supabase */
+      let headersListSupa = {
         "Content-Type": "application/json",
+        apikey:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11bWd6dmRkdGdqa2diYW14dnV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUzMzUxMjIsImV4cCI6MjAzMDkxMTEyMn0.2RthaUC_thNdgNtA1ggSC855_9R_2baj7V0EpdUv3mo",
       };
 
-      let bodyContent = JSON.stringify({
-        id: formData.areaId,
+      let bodyContentSupa = JSON.stringify({
+        camp_id: formData.areaId,
+        camp_area: formData.area,
+        camp_spots: formData.spots,
+        name: formData.customerName,
+        email: formData.customerEmail,
+        address: formData.customerAddress,
+        city: formData.customerCity,
+        postal: formData.customerPostal,
+        tickets_reg: formData.ticketsRegular,
+        tickets_vip: formData.ticketsVIP,
+        camp_green: formData.greenCamping,
       });
 
-      let response = await fetch(
-        process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/fullfill-reservation",
+      let responseSupa = await fetch(
+        process.env.NEXT_PUBLIC_SERVER_INFO_DATABASE_URL + "/bookings",
         {
           method: "POST",
-          body: bodyContent,
-          headers: headersList,
+          body: bodyContentSupa,
+          headers: headersListSupa,
         }
       );
 
-      let data = await response.json();
-      // response from fullfill-reservation ALWAYS returns an object with message, it returns status only in case of error
-      if (data.status) {
-        setResultTxt(data.message);
-      }
-      //console.log(resultTxt)
+      let dataSupa = await responseSupa.text();
+      // supabase returns text string, which is empty on success, or contains a stringified json on error
+      if (dataSupa != "") {
+        let msgJSON = JSON.parse(dataSupa);
+        setResultTxt(msgJSON.message + ". " + msgJSON.hint);
+      } else {
+        // send mail
+        let htmlBody =
+          "<h5>Velkommen til Foofest!</h5>" +
+          "<p>Hej " +
+          formData.customerName +
+          "</p>" +
+          "<p>Du har bestilt " +
+          formData.ticketsRegular +
+          " almindelige biletter, og " +
+          formData.ticketsVIP +
+          " VIP biletter til FooFest 2024.</p>" +
+          "<p> Din booking id er:<strong>" +
+          formData.areaId +
+          "</strong> (Der kan være en qr kode f.eks også)</p>" +
+          "<p>Vi glæder os til at se jer 01.06.2024 i København</p>";
 
-      if (!data.status) {
-        /* Send request to supabase */
-        let headersListSupa = {
-          "Content-Type": "application/json",
-          apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im11bWd6dmRkdGdqa2diYW14dnV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUzMzUxMjIsImV4cCI6MjAzMDkxMTEyMn0.2RthaUC_thNdgNtA1ggSC855_9R_2baj7V0EpdUv3mo",
-        };
-
-        let bodyContentSupa = JSON.stringify({
-          camp_id: formData.areaId,
-          camp_area: formData.area,
-          camp_spots: formData.spots,
-          name: formData.customerName,
-          email: formData.customerEmail,
-          address: formData.customerAddress,
-          city: formData.customerCity,
-          postal: formData.customerPostal,
-          tickets_reg: formData.ticketsRegular,
-          tickets_vip: formData.ticketsVIP,
-          camp_green: formData.greenCamping,
+        const response = await fetch("/api/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            to: formData.customerEmail,
+            html: htmlBody,
+          }),
         });
-
-        let responseSupa = await fetch(
-          process.env.NEXT_PUBLIC_SERVER_INFO_DATABASE_URL + "/bookings",
-          {
-            method: "POST",
-            body: bodyContentSupa,
-            headers: headersListSupa,
-          }
-        );
-
-        let dataSupa = await responseSupa.text();
-        // supabase returns text string, which is empty on success, or contains a stringified json on error
-        if (dataSupa != "") {
-          let msgJSON = JSON.parse(dataSupa);
-          setResultTxt(msgJSON.message + ". " + msgJSON.hint);
-        } else {
-          // send mail
-          let htmlBody =
-            "<h5>Velkommen til Foofest!</h5>" +
-            "<p>Hej " +
-            formData.customerName +
-            "</p>" +
-            "<p>Du har bestilt " +
-            formData.ticketsRegular +
-            " almindelige biletter, og " +
-            formData.ticketsVIP +
-            " VIP biletter til FooFest 2024.</p>" +
-            "<p> Din booking id er:<strong>" +
-            formData.areaId +
-            "</strong> (Der kan være en qr kode f.eks også)</p>" +
-            "<p>Vi glæder os til at se jer 01.06.2024 i København</p>";
-
-          const response = await fetch("/api/send", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              to: formData.customerEmail,
-              html: htmlBody,
-            }),
-          });
-
-          setResultTxt("Booking gennemført");
-        }
+        setResultTxt("Booking gennemført");
       }
-      console.log(resultTxt);
     }
+  }
+  console.log(resultTxt);
 
-    //console.log("Form Submitted:", formData);
+  //console.log("Form Submitted:", formData);
   };
 
   //const [reservation, setReservation] = useState({}); unused
