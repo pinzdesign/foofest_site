@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export default function SiteFooter() {
   return (
     <footer>
@@ -5,10 +7,10 @@ export default function SiteFooter() {
         <div className="row">
           <div className="col-md">
             <address>
-              <p>Adressevej 12</p>
-              <p>Bynavn 1234</p>
-              <p>mail@foofest.dk</p>
-              <p>tlf: +45 12 34 56 78</p>
+              <p><FontAwesomeIcon icon="house" className="icon" /> Adressevej 12</p>
+              <p><FontAwesomeIcon icon="hashtag" className="icon" /> Bynavn 1234</p>
+              <p><FontAwesomeIcon icon="envelope" className="icon" /> mail@foofest.dk</p>
+              <p><FontAwesomeIcon icon="phone" className="icon" /> tlf: +45 12 34 56 78</p>
             </address>
           </div>
           <div className="col-md">

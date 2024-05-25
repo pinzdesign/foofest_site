@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Gugi } from "next/font/google";
+import { Gugi, Rajdhani } from "next/font/google";
 
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,7 +12,7 @@ import "./globals.css";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 
-const font = Gugi({ weight: '400', subsets: ["latin"] });
+const font = Rajdhani({ weight: '600', subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "FooFest 2024 - Bedste fetival nogensinde!",
