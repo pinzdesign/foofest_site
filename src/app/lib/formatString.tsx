@@ -1,6 +1,11 @@
 export function formatImgPath(path:string) {
     let logo = "noimage.png";
-    if(path.startsWith("https://")) { logo = path }
+    let rnd = Math.random() * 5;
+    if(path.startsWith("https://")) {
+        //logo = path
+        //unsplash stopped working - using another service: picsum.photos
+        logo = "https://picsum.photos/500/800?random=" + rnd
+    }
     else { logo = process.env.NEXT_PUBLIC_SERVER_INFO_API_URL + "/logos/" + path }
     return logo;
 }

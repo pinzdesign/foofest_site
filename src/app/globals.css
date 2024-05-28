@@ -185,6 +185,11 @@ input {
   em { font-weight: 400; }
 }
 
+.sponsors {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* footer */
 footer {
   background-color: var(--color-secondary);
@@ -216,6 +221,9 @@ footer {
 
 @media screen and (max-width: 800px) {
   .grid_3 {
+    grid-template-columns: 1fr;
+  }
+  .grid_2 {
     grid-template-columns: 1fr;
   }
 }
